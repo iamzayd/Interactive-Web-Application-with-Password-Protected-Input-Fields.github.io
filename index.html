@@ -1,0 +1,142 @@
+<!-- Created By Najeeb Saiyed ~ PRN - 21070126057 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expt 4</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Honk&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+
+
+    <style>
+        body{
+            font-family: "Pixelify Sans", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: antiquewhite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+    
+        label {
+            display: flex;
+            /* align-items: center; */
+            margin: 15px 0 5px;
+            color: #666;
+            font-size: 16px;
+        }
+    
+        input[type="text"] {
+            display: flex;
+            /* align-items: center; */
+            width: 343px;
+            height: 35px;
+            padding: 0 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box; /* Ensures padding doesn't affect overall width */
+        }
+    
+        /* This is the selector. It targets <input> elements of the type text that are in the disabled state */
+        input[type="text"]:disabled {   
+            background-color: #eee;
+            cursor: not-allowed;
+        }
+
+        .container{
+            background-color: rgb(247, 223, 191);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,1);
+            padding: 40px;
+            /* text-align:center; */
+        }
+    
+        button {
+            background-color: #c59e59;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+    
+        button:hover {
+            background-color: #947119;
+        }
+    </style>
+    
+
+</head>
+<body>
+    <!-- <h1>Form Validation with Password Activation</h1> -->
+
+    <div class="container">
+        <h1>Form Validation with Password Activation</h1>
+
+        <label for ="mobNum">Mobile Number: </label>
+        <input type="text" id="mobNum" disabled required>
+
+        <label for="emailId">Email Adrress: </label>
+        <input type="text" id="emailId" disabled required>
+
+        <button id="activationBtn" onclick="activationFn()">Activate Text Boxes</button>
+
+        <button id="submit" onclick="submit()">Submit Details</button>
+    </div>
+
+
+
+    <script>
+        function activationFn(){
+            var activateInput = prompt("Please enter password to activate the textboxes: ");
+
+            if (activateInput === "root"){
+                
+                var numberInput = document.getElementById("mobNum");
+
+                var emailInput = document.getElementById("emailId");
+
+                numberInput.disabled = false
+                emailInput.disabled = false
+
+                alert("Textboxes are now activated! ")
+            } else{
+                alert("Back off!! Authorized Access only!")
+            }
+
+        }
+        function submit(){
+            var mobileNo = document.getElementById("mobNum").value;
+            var emailId = document.getElementById("emailId").value;
+
+            var mobileRegex = /^\d{10}$/;
+            if (!mobileRegex.test(mobileNo)) 
+            {
+                alert("Mobile number is not correct.");
+                return;
+            }
+    
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailId)) 
+            {
+                alert("Email is not correct.\nEmail must be in the format: user@example.com");
+                return;
+            }
+            alert("Form submitted successfully!");
+        }
+    </script>
+</body>
+</html>
